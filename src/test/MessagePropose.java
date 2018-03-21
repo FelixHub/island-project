@@ -1,22 +1,30 @@
 package test;
 
-public abstract class Message {
+public class MessagePropose extends Message {
 
-	public abstract Performatif getPerformatif();
-	public abstract String format();
+	private ObjetTransportable content;
 	
-	protected Agent speaker;
-	
-	@Override
-	public String toString() {
-		return speaker.getName() + " :- " + this.format();
+	public ObjetTransportable getContent() {
+		return content;
 	}
 	
-	public static void main(String[] z) {
-		ObjetTransportable o1 = new ObjetTransportable("couteau suisse");
-		Agent a = new Agent("toto");
-		Message m = new MessagePropose(a,o1);
-		System.out.println(m);
+	public MessagePropose(Agent s, ObjetTransportable o) {
+		super.speaker = s;
+		this.content = o;
+	}
+	
+	@Override
+	public Performatif getPerformatif() {
+		return Performatif.PROPOSE;
+	}
+	
+	@Override
+	public String format() {
+		return format(this.content);
+	}
+	
+	public String format(ObjetTransportable o) {
+		return "Je propose qu'on prenne le " + o.toString();	
 	}
 }
 	

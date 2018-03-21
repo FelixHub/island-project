@@ -6,7 +6,7 @@ public enum Dimension {
 	public String toString() {
 		switch (this) {
 		case SAFETY:
-			return "de la sécurité";
+			return "de la securite";
 		case FOOD:
 			return "de la nourriture";
 		case HELP:
@@ -14,7 +14,7 @@ public enum Dimension {
 		case SIZE:
 			return "de la place dans le sac";
 		default:
-			return "de la durabilité";
+			return "de la durabilite";
 		}
 	}
 }

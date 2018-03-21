@@ -2,28 +2,41 @@ package test;
 
 import java.util.Hashtable;
 
+/** Les utilite sont entre 0 et 1
+ * 
+ */
+
 public class ObjetTransportable {
 	
-	Hashtable<Dimension,Integer> utility;
-	String name;
+	private Hashtable<Dimension,Double> utility;
+	private String name;
 
 	// une solution = attribuer une utilité à chaque dimension dans une table de hachage (clef = dimension, contenu = utilité), voir comment l'instancier
-	public double utilit�(Dimension a) {
+	public double utilite(Dimension a) {
 		return utility.get(a);
 	}
 	
-	public ObjetTransportable(String name,int food, int safe, int help, int size, int durability) {
+	public void setUtility(Dimension d, double val) {
+		utility.put(d, val);
+	}
+	
+	public ObjetTransportable(String name) {
 		this.name = name;
-		Hashtable<Dimension,Integer> utility = new Hashtable<Dimension,Integer>();
-		utility.put(Dimension.FOOD,food);
-		utility.put(Dimension.SAFETY,safe);
-		utility.put(Dimension.HELP,help);
-		utility.put(Dimension.SIZE,size);
-		utility.put(Dimension.DURABILITY,durability);
-		this.utility = utility;
+		this.utility = new Hashtable<Dimension,Double>();
 	}
 	
 	public String toString() {
 		return name;
+	}
+	
+	public static void main(String[] z) {
+		ObjetTransportable o1 = new ObjetTransportable("couteau suisse");
+		o1.setUtility(Dimension.FOOD,0.5);
+		o1.setUtility(Dimension.SAFETY,0.8);
+		o1.setUtility(Dimension.HELP,0);
+		o1.setUtility(Dimension.SIZE,1);
+		o1.setUtility(Dimension.DURABILITY,0.2);
+		
+		System.out.println(o1); // ne teste pas les valeurs de dimension
 	}
 }

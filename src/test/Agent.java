@@ -1,16 +1,47 @@
 package test;
 
 import java.util.Hashtable;
+import java.util.Random;
 
 public class Agent {
 	
+	public static final Random rand = new Random();
+	
+	
 	Hashtable<Dimension,Integer> poidsDim;
-	String name;
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
 	
 	// poids pour les dimensions -> comme un ordre sauf que c'est cardinal
 	public double poids(Dimension a) {
 		return poidsDim.get(a);
 	}
+
+	public Agent(String name) {
+		this.name = name;
+	} // TODO
+	
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public Message[] parler(ObjetTransportable ot) {
+		int n = rand.nextInt(3);
+		Message[] msgs = new Message[n];
+		for(int i = 0;i<n;i++) {
+			msgs[i] = new Message() // à choisir Propose, ou autre, aléatoire
+		}
+		return msgs;
+	}
+	
+	
+	
+	
+	
 	
 	public Agent(String name,int food, int safe, int help, int size, int durability) {
 		this.name = name;
@@ -21,11 +52,6 @@ public class Agent {
 		poidsDim.put(Dimension.SIZE,size);
 		poidsDim.put(Dimension.DURABILITY,durability);
 		this.poidsDim = poidsDim;
-	}
-
-	@Override
-	public String toString() {
-		return name;
 	}
 
 	public ObjetTransportable chooseObject() {
