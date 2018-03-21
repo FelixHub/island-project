@@ -1,0 +1,39 @@
+Salut,
+
+Pour ce qui est de la façon de construire la  situation d'argumentation, j'hésite entre :
+
+-chaque voyageur a classé dans sa tête par ordre d'utilité les objets à emporter. Je pense que ça ne permet pas de mettre en valeur le comportement binaire des personnes ( entre prevention et promotion focus), de plus je ne sais pas trop à quel argument ils ferait appel pour justifier leur préférence ou convaincre l'autre. Mais dans les expériences de l’île déserte, c'est toujours cette approche qui est adopté.
+
+-les objets sonr réparties dans 3 ensembles non disjoints de types : food / safety / getting help, et en gros l'agent promotion focus accepterai les objets food ou getting help, alors que l'agent prevention focus accepterai les objets food ou safety. Dans le cas ou les agents partent avec des connaissances lacunaires des objets, on peut construire le déroulement de l'argumentation suivant : si par exemple A et B sont respectivement promotion et prevention
+- A propose un objet qu'il veut emporter ( donc dans food ou getting help)
+- si l'objet est dans food et que B le sait, il accepte de le prendre. 
+-sinon, B challenge la proposition de A en lui demandant pourquoi emporter l'objet.
+-A fait valoir l'appartenance de l'objet à la catégorie food ou à la catégorie getting help.
+-Si A montre que l'objet appartient à food, B accepte de le prendre. Sinon B refuse. 
+J'ai le formalisme, je pourrai coder ça, mais le problème c'est qu'il vont se retrouver à prendre que de la nourriture...  Je sais pas si c'est très intéressant, je trouve pas ça très nuancé.
+
+Qu'en pensez vous ?
+
+Je n'ai pas d'autres idées, j'ai trouvé des bons articles très formels qui développement des théories de l'argumentation, mais peu prennent en compte le fait que les individus puissent avoir des préférences différentes, et l'argumentation repose plutôt sur un échange d'informations pour arriver à un conclusion logique, on ne "persuade" pas beaucoup. Je continue à chercher.
+
+
+merci
+
+----
+
+Au contraire, puisque nous allons partir sur des questions d'argumentation, il faut un modèle de préférence, un peu comme ce qu'a fait Lydia, avec différentes dimensions à comparer entre elles.
+
+
+Ça me parait encore trop simple, mais on peut commencer comme ça si tu veux.
+As-tu déjà un moteur qui tourne sans modèle de préférence ? (juste avec des choix aléatoires) ?
+
+
+Non, ça n'est pas assez nuancé car tu ne combines pas les éléments sur plusieurs dimensions. Mais comme dit plus haut, tu peux déjà code ça, c'est un début.
+Voici une proposition d'amélioration :
+- dimension "famille" (food, help, safety)
+- dimension "taille/poids" (big, medium, small)
+- dimension "durabilité" (long, medium, short)
+
+Ici, j'ai deux dimensions avec des préférences naturelles (on préfère un truc petit, durable qu'un truc lourd et qui ne s'utilise qu'une fois) et une avec des préférences individuelles (chacun aura son choix). Tu peux ajouter d'autres dimensions. Mais surtout, tu vas ajouter une méta-dimension pour dire qu'on accorde plus d'importance à tel ou tel critère.
+
+Ensuite, il faut voir comment les agents combinent ça dans les discussions... tout en ne sachant pas ce qui compte pour l'autre ! 
