@@ -1,10 +1,36 @@
 package test;
 
-public class Agent {
+import java.util.Hashtable;
 
+public class Agent {
+	
+	Hashtable<Dimension,Integer> poidsDim;
+	String name;
+	
 	// poids pour les dimensions -> comme un ordre sauf que c'est cardinal
 	public double poids(Dimension a) {
-		return 0;
+		return poidsDim.get(a);
+	}
+	
+	public Agent(String name,int food, int safe, int help, int size, int durability) {
+		this.name = name;
+		Hashtable<Dimension,Integer> poidsDim = new Hashtable<Dimension,Integer>();
+		poidsDim.put(Dimension.FOOD,food);
+		poidsDim.put(Dimension.SAFETY,safe);
+		poidsDim.put(Dimension.HELP,help);
+		poidsDim.put(Dimension.SIZE,size);
+		poidsDim.put(Dimension.DURABILITY,durability);
+		this.poidsDim = poidsDim;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	public ObjetTransportable chooseObject() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

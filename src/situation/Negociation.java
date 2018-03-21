@@ -1,6 +1,13 @@
 package situation;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import test.Backpack;
 
 public class Negociation {
 	
@@ -32,39 +39,50 @@ public class Negociation {
 	}
 	
 	public void action() {
-		if (flag == 1) {
-			currentUtility = traveler1.suggestUtility(Utilities);
-			if (traveler2.evalUtility(currentUtility)) {
-				backpack.add(currentUtility);
-			}
-			flag = 2;
-		}
+					
+		currentUtility = traveler1.suggestUtility(Utilities);
+		System.out.println(traveler1.name + " : we should put "+ currentUtility + " in our bag.");
+			
+		if (traveler2.evalUtility(currentUtility)) {
+			
+			System.out.println(traveler2.name + " : yes, good idea ! let's put the "
+			                   + currentUtility +" in the backpack.");
+		backpack.add(currentUtility);
+		} 
 		else {
-			currentUtility = traveler2.suggestUtility(Utilities);
-			if (traveler1.evalUtility(currentUtility)) {
-				backpack.add(currentUtility);
-			}
-			flag = 1;
-		}
+			System.out.println(traveler2.name+" : no, it's a bad idea.");
+		}	
 	}
 
-	public static void main(String[] args) {
-		Traveler t1 = new Traveler("Dave");
-		Traveler t2 = new Traveler("Bruce");
-		Utility u0 = new Utility("fork");
-		Utility u1 = new Utility("knife");
-		Utility u2 = new Utility("spoon");
-		Utility u3 = new Utility("towel");
-		Utility u4 = new Utility("sunbeam");
-		ArrayList<Utility> U = new  ArrayList<Utility>();
-		U.add(u0);
-		U.add(u1);
-		U.add(u2);
-		U.add(u3);
-		U.add(u4);
-		Backpack BP = new Backpack(3);
-		Negociation nego1 = new Negociation(t1,t2,U,BP,null);
-		nego1.FillBackpack();
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader br;
+		try {
+			br = new BufferedReader(
+			    new InputStreamReader(new FileInputStream("C:\\Users\\fphub\\eclipse-workspace\\limsi.Argumentation.0.1\\situation.txt")));
+		    String line;
+		    Traveler t1 = new Traveler(br.readLine());
+			Traveler t2 = new Traveler(br.readLine());
+			ArrayList<Utility> U = new  ArrayList<Utility>();
+		    while ((line = br.readLine()) != null) {
+		    	String n = line;
+		    	int c1 = Integer.parseInt(br.readLine());
+		    	int c2 = Integer.parseInt(br.readLine());
+		    	int c3 = Integer.parseInt(br.readLine());
+		    	int c4 = Integer.parseInt(br.readLine());
+		    	Utility u = new Utility(n,c1,c2,c3,c4);
+		    	U.add(u);
+		    Backpack BP = new Backpack(3);
+			Negociation nego1 = new Negociation(t1,t2,U,BP,null);
+			nego1.FillBackpack();
+		    }
+		    br.close();
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		   
 	}
 	
 }
