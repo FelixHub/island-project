@@ -11,7 +11,8 @@ public class ObjetTransportable {
 	private Hashtable<Dimension,Double> utility;
 	private String name;
 
-	// une solution = attribuer une utilité à chaque dimension dans une table de hachage (clef = dimension, contenu = utilité), voir comment l'instancier
+	// une solution = attribuer une utilite à chaque dimension 
+	//dans une table de hachage (clef = dimension, contenu = utilite), voir comment l'instancier
 	public double utilite(Dimension a) {
 		return utility.get(a);
 	}
@@ -28,7 +29,7 @@ public class ObjetTransportable {
 	public String toString() {
 		return name;
 	}
-	
+/**
 	public static void main(String[] z) {
 		ObjetTransportable o1 = new ObjetTransportable("couteau suisse");
 		o1.setUtility(Dimension.FOOD,0.5);
@@ -38,5 +39,9 @@ public class ObjetTransportable {
 		o1.setUtility(Dimension.DURABILITY,0.2);
 		
 		System.out.println(o1); // ne teste pas les valeurs de dimension
+	}
+*/
+	public String getName() {
+		return name;
 	}
 }

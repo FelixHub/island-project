@@ -47,7 +47,7 @@ public class Negociation {
 			
 			System.out.println(traveler2.name + " : yes, good idea ! let's put the "
 			                   + currentUtility +" in the backpack.");
-		backpack.add(currentUtility);
+		//backpack.add(currentUtility);
 		} 
 		else {
 			System.out.println(traveler2.name+" : no, it's a bad idea.");
@@ -70,8 +70,8 @@ public class Negociation {
 		    	int c2 = Integer.parseInt(br.readLine());
 		    	int c3 = Integer.parseInt(br.readLine());
 		    	int c4 = Integer.parseInt(br.readLine());
-		    	Utility u = new Utility(n,c1,c2,c3,c4);
-		    	U.add(u);
+		    	//Utility u = new Utility(n,c1,c2,c3,c4);
+		    	//U.add(u);
 		    Backpack BP = new Backpack(3);
 			Negociation nego1 = new Negociation(t1,t2,U,BP,null);
 			nego1.FillBackpack();

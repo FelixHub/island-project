@@ -33,7 +33,7 @@ public class Backpack {
 	public String toString() {
 		String s = "Le sac contient les objets : ";
 		for(ObjetTransportable u : contents) {
-			s = s + u.name+ " and ";
+			s = s + u.getName() + " and ";
 		}
 		return (s+" et c'est tout.");
 	}

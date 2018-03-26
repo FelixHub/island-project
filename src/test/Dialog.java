@@ -12,6 +12,7 @@ public class Dialog {
 	Backpack backpack;
 	
 	public Dialog(Agent traveler1, Agent traveler2, ArrayList<ObjetTransportable> utilities, Backpack backpack) {
+		this.travelers = new Agent[2];
 		this.travelers[0] = traveler1;
 		this.travelers[1] = traveler2;
 		this.utilities = utilities;
@@ -22,8 +23,9 @@ public class Dialog {
 		int current_speaker = 0;
 		//while (à décider)
 		for(int i=0;i<NB_TOURS;i++) {
-			Message[] lmes = travelers[current_speaker].parler();
-			afficher(lmes);
+			ObjetTransportable objet = new ObjetTransportable("couteau suisse");
+			Message[] lmes = travelers[current_speaker].parler(objet);
+			current_speaker = (current_speaker+1)%2;
 		}
 		
 	}
@@ -49,8 +51,16 @@ public class Dialog {
 //	}
 //
 	
+	private void afficher(Message[] lmes) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public static void main(String [] args) {
-		d = new Dialog(...);
+		Dialog d = new Dialog(new Agent("Bruce"),new Agent("Will"),
+				new ArrayList<ObjetTransportable>() {{add(new ObjetTransportable("couteau suisse"));
+				add(new ObjetTransportable("mirroir"));add(new ObjetTransportable("creme solaire"));}},
+				new Backpack(10));
 		d.BackpackFilling();
 	}
 	

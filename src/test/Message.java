@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Random;
+
 public abstract class Message {
 
 	public abstract Performatif getPerformatif();
@@ -11,12 +13,32 @@ public abstract class Message {
 	public String toString() {
 		return speaker.getName() + " :- " + this.format();
 	}
-	
+/**
 	public static void main(String[] z) {
 		ObjetTransportable o1 = new ObjetTransportable("couteau suisse");
 		Agent a = new Agent("toto");
 		Message m = new MessagePropose(a,o1);
 		System.out.println(m);
+	}
+*/	
+	public static Message randomMessage(Agent speaker, ObjetTransportable objetBidon) {
+		Random rn = new Random();
+		int randomNum = rn.nextInt(5);
+		if (randomNum == 0) {
+			return new MessageArgPro(speaker,objetBidon);
+		}
+		else if(randomNum == 1) {
+			return new MessageArgCon(speaker,objetBidon);
+		}
+		else if(randomNum == 2){
+			return new MessagePropose(speaker,objetBidon);
+		}
+		else if(randomNum == 3) {
+			return new MessageRefuse(speaker);
+		}
+		else {
+			return new MessageAccept(speaker);
+		}
 	}
 }
 	
@@ -28,39 +50,4 @@ public abstract class Message {
 	
 	
 	
-//	static Performatif p;
-//	static PreviousPerformatif prP;
-//	static ObjetTransportable currentObject;
-//	static Agent speaker;
-//	static Agent nonSpeaker;
-//	
-//	static {
-//		p = new Performatif();
-//	}
-//	
-//	static void display() {
-//		
-//		if (prP == PreviousPerformatif.ACCEPTER || prP == PreviousPerformatif.REFUSER) {
-//			
-//		//on a fini de parler d'un objet, on passe donc au suivant en en choissisant un autre	
-//			
-//			currentObject = speaker.chooseObject();
-//			p.proposer(currentObject,speaker);
-//			prP = PreviousPerformatif.PROPOSER;
-//			swapSpeaker();
-//			
-//		}
-//		else {
-//			// pour l'instant on fait tout au hasard mais 4 comportement sont possibles.
-//			
-//		}
-//	}
-//	
-//	
-//	
-//	static void swapSpeaker() {
-//	    Agent temp = speaker;
-//	    speaker = nonSpeaker;
-//	    nonSpeaker = temp;
-//	}
 

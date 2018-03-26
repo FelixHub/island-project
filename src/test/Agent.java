@@ -9,7 +9,7 @@ public class Agent {
 	
 	
 	Hashtable<Dimension,Integer> poidsDim;
-	private String name;
+	String name;
 	
 	public String getName() {
 		return name;
@@ -33,8 +33,11 @@ public class Agent {
 		int n = rand.nextInt(3);
 		Message[] msgs = new Message[n];
 		for(int i = 0;i<n;i++) {
-			msgs[i] = new Message() // à choisir Propose, ou autre, aléatoire
+			
+			msgs[i] = Message.randomMessage(this, ot); // à choisir Propose, ou autre, aléatoire
+			System.out.println(msgs[i]);
 		}
+		
 		return msgs;
 	}
 	
