@@ -1,5 +1,8 @@
 package test;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -63,6 +66,17 @@ public class Dialog {
 				add(new ObjetTransportable("mirroir"));add(new ObjetTransportable("creme solaire"));}},
 				new Backpack(10));
 		d.BackpackFilling();
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter("watwat.txt", "UTF-8");
+			writer.println("The first line");
+			writer.println("The second line");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
