@@ -1,0 +1,2 @@
+J'ai passé la journée à coder. Peu d'avancée. Le code tourne et fait un peu près ce qu'on voulait, c'est à dire créer un dialogue très très aléatoire. 
+
