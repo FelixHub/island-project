@@ -7,7 +7,7 @@ public class Agent {
 	
 	public static final Random rand = new Random();
 	
-	
+	 
 	Hashtable<Dimension,Integer> poidsDim;
 	String name;
 	
