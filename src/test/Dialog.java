@@ -1,6 +1,7 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Dialog {
 	
@@ -23,7 +24,7 @@ public class Dialog {
 		int current_speaker = 0;
 		//while (à décider)
 		for(int i=0;i<NB_TOURS;i++) {
-			ObjetTransportable objet = new ObjetTransportable("couteau suisse");
+			ObjetTransportable objet = utilities.get((new Random()).nextInt(utilities.size()));
 			Message[] lmes = travelers[current_speaker].parler(objet);
 			current_speaker = (current_speaker+1)%2;
 		}

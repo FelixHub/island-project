@@ -24,6 +24,6 @@ public class MessageArgCon extends Message {
 		return format(this.content,this.dim);
 	}
 	public String format(ObjetTransportable o,Dimension d) {
-		return "Ne prenons pas cet objet, parceque le "+o.toString()+"ne nous apporteras pas"+d.toString();
+		return "Ne prenons pas le "+o.toString()+", ça ne nous apporteras pas"+d.toString();
 	}
 }

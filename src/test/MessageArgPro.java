@@ -24,7 +24,7 @@ public class MessageArgPro extends Message {
 		return format(this.content,this.dim);
 	}
 	public String format(ObjetTransportable o,Dimension d) {
-		return "Prenons cet objet, parceque le "+ o.toString() +"nous apportera" + d.toString();	
+		return "Prenons le "+ o.toString() +", ça nous apportera" + d.toString();	
 	}
 
 }
