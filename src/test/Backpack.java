@@ -2,8 +2,6 @@ package test;
 
 import java.util.ArrayList;
 
-import situation.Utility;
-
 public class Backpack {
 	
 	int capacity;
@@ -32,11 +30,19 @@ public class Backpack {
 	@Override
 	public String toString() {
 		String s = "Le sac contient les objets : ";
+		
 		for(ObjetTransportable u : contents) {
-			s = s + u.getName() + " and ";
+			if (u == null) {
+				continue;
+			}
+			else{
+				s = s + u.getName() + " and ";
+			}
 		}
 		return (s+" et c'est tout.");
+		
 	}
+
 	
 
 }

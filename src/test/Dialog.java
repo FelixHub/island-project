@@ -1,6 +1,9 @@
 package test;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -15,10 +18,13 @@ public class Dialog {
 	ArrayList<ObjetTransportable> utilities;
 	Backpack backpack;
 	
-	public Dialog(Agent traveler1, Agent traveler2, ArrayList<ObjetTransportable> utilities, Backpack backpack) {
+	public void addUtilities(ObjetTransportable obj) {
+		utilities.add(obj);
+	}
+	public Dialog(Agent[] t, ArrayList<ObjetTransportable> utilities, Backpack backpack) {
 		this.travelers = new Agent[2];
-		this.travelers[0] = traveler1;
-		this.travelers[1] = traveler2;
+		this.travelers[0] = t[0];
+		this.travelers[1] = t[1];
 		this.utilities = utilities;
 		this.backpack = backpack;
 	}
@@ -60,17 +66,25 @@ public class Dialog {
 		
 	}
 
-	public static void main(String [] args) {
-		Dialog d = new Dialog(new Agent("Bruce"),new Agent("Will"),
-				new ArrayList<ObjetTransportable>() {{add(new ObjetTransportable("couteau suisse"));
-				add(new ObjetTransportable("mirroir"));add(new ObjetTransportable("creme solaire"));}},
-				new Backpack(10));
+	public static void main(String [] args) throws IOException {
+		   
+		Dialog d = new Dialog(new Agent[2], new ArrayList<ObjetTransportable>(), new Backpack(10));
+		d.travelers[0] = new Agent("bruce",d);
+		d.travelers[1] = new Agent("Will",d);
+		FileReader in = new FileReader("Input.txt");
+	    BufferedReader br = new BufferedReader(in);
+	 
+		String line;
+		while ((line = br.readLine()) != null) {
+		    d.addUtilities(new ObjetTransportable(line));
+		}
+	
 		d.BackpackFilling();
-		PrintWriter writer;
+		
 		try {
-			writer = new PrintWriter("watwat.txt", "UTF-8");
-			writer.println("The first line");
-			writer.println("The second line");
+			PrintWriter writer;
+			writer = new PrintWriter("OutputDialog.txt", "UTF-8");
+			writer.println(d.backpack);
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

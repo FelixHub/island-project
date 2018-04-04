@@ -6,7 +6,7 @@ import java.util.Random;
 public class Agent {
 	
 	public static final Random rand = new Random();
-	
+	public Dialog dialog;
 	 
 	Hashtable<Dimension,Integer> poidsDim;
 	String name;
@@ -20,8 +20,9 @@ public class Agent {
 		return poidsDim.get(a);
 	}
 
-	public Agent(String name) {
+	public Agent(String name, Dialog d) {
 		this.name = name;
+		this.dialog = d;
 	} // TODO
 	
 	@Override
@@ -34,10 +35,9 @@ public class Agent {
 		Message[] msgs = new Message[n];
 		for(int i = 0;i<n;i++) {
 			
-			msgs[i] = Message.randomMessage(this, ot); // à choisir Propose, ou autre, aléatoire
+			msgs[i] = Message.randomMessage(dialog, this, ot); // à choisir Propose, ou autre, aléatoire
 			System.out.println(msgs[i]);
 		}
-		
 		return msgs;
 	}
 	

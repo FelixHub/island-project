@@ -1,10 +1,11 @@
 package test;
 
 public class MessageAccept extends Message {
-
-	
-	public MessageAccept(Agent s) {
+	public Dialog d;
+	public ObjetTransportable objet;
+	public MessageAccept(Dialog d, Agent s,ObjetTransportable objetBidon) {
 		super.speaker = s;
+		this.d = d;
 	}
 	
 	@Override
@@ -14,7 +15,9 @@ public class MessageAccept extends Message {
 	
 	@Override
 	public String format() {
+		d.backpack.add(objet);
 		return "Ok on le met dans le sac.";
+		
 	}
 		
 }
