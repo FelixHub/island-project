@@ -4,3 +4,29 @@ J'ai eu deux idées de choses à rajouter dans mon programme :
 - un messageArgCon ou un messageArgPro est censé succéder à un messagePropose, dans le but de convaincre son interlocuteur. Pour choisir si le messageArg*** est dit ou non, j'ai pensé qu'il serait naturel de créer une horloge au sein du programme, et que les voyageurs ai des temps de réponse variables. Si le temps de réponse de TRAVELER1 est très court après un messagePropose de TRAVELER2, le messageArgCon de TRAVELER2 pour appuyer la proposition n'est pas dit. Si le temps de réponse de TRAVELER1 est long, il est dit ( naturellement devant le silence pensif de l'autre on défend ses propositions). Et ce temps de réponse pourrait être fonction de l'écart entre le "score" du message ( une valeur calculé avec les pondérations) et un certain seuil d'acceptation à déterminer. Avec une fonction gaussienne centré en zéro ou un truc du genre.
 
 - Au lieu de choisir un peu au hasard les valeurs de pondérations côté voyageur, je pourrai faire du machine learning. Je créé un sondage google que je fais tourner sur mon campus pour demander au gens de rentrer un objet qu'il emporterais sur une ile deserte, ainsi que toute ses caractéristiques FOOD,SAFETY,HELP,SIZE,ETC... Ensuite en caricaturant un peu, on joue le voyageur promotion focus, puis le voyageur prevention focus, et pour chacun on choisi si on prend ou pas l'objet sur l'ile.On fait tourner un algo d'apprentissage sur ces données, et on en sort des pondérations pour les deux types de voyageurs à peu près vraisemblables. Mais il manque toujours une fonction de coût...
+
+
+
+
+------------------ Remarques NS -------------------
+
+- un messageArgXXX est censé succéder à un messagePropose -> je ne suis pas d'accord. Voici un dialogue qui me semblerait naturel et qui, pourtant, ne respecte pas cette règle (inspiré de notre trajet en bus ce matin, Lydia reconnaîtra) :
+
+	Nicolas (à Lydia) : Je propose qu'on teste sur 3 personnes avec la perso à 0.6 pour voir
+	Lydia : Oui, comme ça on saura si les gens reconnaissent bien les dimensions
+	Nicolas : On s'en fiche que les gens reconnaissent, mais ça permettra de voir si ça change l'appréciation
+
+Si je formalise :
+
+	N->L : Propose(Test3)
+	L->N : ArgPro(Dimensions)
+	N->L : ArgPro(Appréciation)
+
+Tu noteras au passage qu'il manque un élément de la discussion, qui est que j'ai exprimé mon désintérêt pour le critère "Dimensions". On pourrait avoir un acte de langage pour ça :
+
+	ArgValue(Dimensions,Low)
+
+- Les horloges sont une très bonne idée. Il existe des mécanismes pour programmer cela en multi-agent facilement. Je pourrais te montrer mercredi. Par contre, même si c'est amusant du point de vue informatique, on va avoir du mal à calibrer cela à partir de théories de SHS... Du coup je ne sais pas si c'est une piste à explorer au niveau recherche.
+Il faudrait que tu regardes un peu la litérature sur les tours de parole que fait Mathieu Jégou dans notre équipe (mais attention, il part à la fin du mois !)
+
+- Pour ton idée de sondage et la méthodologie de calibration, on en discute mercredi. Il y a des idées marantes mais attention: il faut avoir une approche scientifique du problème aussi ! :)
