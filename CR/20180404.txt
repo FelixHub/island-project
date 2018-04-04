@@ -1,0 +1,9 @@
+
+1/ le programme lit le nom des nouveaux objets depuis un fichier texte et il dépose dans un fichier texte le contenu du sac à dos à la fin du dialogue. Je ne trouve pas l'erreur dans mon code qui fait que le sac est toujours vide à la fin...
+2/ j'ai commencé un google form avec le test de Caroline Faure et des demandes de choix d'objets. https://goo.gl/forms/8jhpV4sdQaEAcY0E2. Je ne suis plus sûr de l'ordre dans lequel poser les questions. Tu avais dis de prendre deux échantillons de pop différents pour deux questionnaires différents ? j'ai oublié.
+3/ Mathieu m'a parlé de sa thèse et m'a envoyé des réferences. C'est interessant, mais j'ai du mal à me concentrer pour les lires, je pense que je suis malade. J'ajouterai des résumés à mon état de l'art plus tard.
+4/ J'ai commencé des recherches pour faire une petite dissertation sur la question "la personnalité est elle une propriété émergente ?"
+Pareil j'était fatigué, j'essaye de finir ça pour la semaine prochaine.
+
+5/ Pour la partie fichier explicatif du code j'ai commencer par chercher comment créer des diagram UML du code, ce que j'ai réussi à faire. 
+
