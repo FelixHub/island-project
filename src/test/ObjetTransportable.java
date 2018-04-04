@@ -7,7 +7,7 @@ import java.util.Hashtable;
  */
 
 public class ObjetTransportable {
-	
+	  
 	private Hashtable<Dimension,Double> utility;
 	private String name;
 
