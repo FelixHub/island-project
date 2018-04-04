@@ -1,7 +1,7 @@
 package test;
 
 import java.util.Hashtable;
-
+ 
 /** Les utilite sont entre 0 et 1
  * 
  */
