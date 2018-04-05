@@ -2,6 +2,14 @@ package test;
 
 import java.util.ArrayList;
 
+/** Cette classe représente le sac à dos contenant les objets qui ont été acceptés.
+ * Les objets peuvent y être ajoutés mais pas retirés.
+ * 
+ * Question NS : pourquoi ne pas faire simplement un extends ArrayList<OT> ?
+ * Réponse (NS) : parce qu'on ne veut pas retirer, par exemple.
+ * (pour l'instant, c'est la seule raison que je vois)
+ *
+ */
 public class Backpack {
 	
 	int capacity;
@@ -33,7 +41,7 @@ public class Backpack {
 		
 		for(ObjetTransportable u : contents) {
 			if (u == null) {
-				continue;
+				continue; // NS : remplacer par throw new RuntimeException("C'est n'importe quoi ce sac à dos!");
 			}
 			else{
 				s = s + u.getName() + " and ";

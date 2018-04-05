@@ -7,3 +7,63 @@ Pareil j'était fatigué, j'essaye de finir ça pour la semaine prochaine.
 
 5/ Pour la partie fichier explicatif du code j'ai commencer par chercher comment créer des diagram UML du code, ce que j'ai réussi à faire. 
 
+
+
+
+------------- Réponses NS -------------
+
+1/ Pour trouver cette erreur, il faut commencer par bien programmer :-) La règle d'or, c'est que les attributs sont privés (et les méthodes publiques en général), donc en particulier ton Backpack dans la classe Dialog ne devrait pas être accessible depuis l'extérieur... en particulier par le message Accept. Il te faut une méthode de modification, appelée par Accept, qui te permettra de tracer quand ton Backpack est modifié.
+Ensuite, il faut commenter ton code, sinon c'est impossible de bien travailler...
+Une fois tout cela fait, on peut discuter. (enfin, j'ai d'autres remarques, comme par exemple le fait que tout soit dans un seul paquet ce qui n'est pas raisonnable, mais on pourra en parler mercredi).
+
+Là, on se rend compte que tu mets les objets "par effet de bord" dans le "format" de la méthode accept. Bon, c'est carrément cradouille mais pourquoi pas.
+
+Bon, ensuite, il faut "cerner" l'erreur. Je vois d'emblée trois possibilités :
+
+1. La méthode d'affichage déconne ; => je n'ai pas l'impression mais ça peut se tester
+2. L'ajout se fait dans un mauvais sac à dos (parce que tu as plusieurs d qui se balladent) ; => je n'ai pas l'impression mais on peut le vérifier en regardant le contenu du sac avant et après l'appel à BackpackFilling()
+3. L'ajout ne se fait pas :
+	3a. parce que la méthode format sur Accept n'est jamais appelée => Ça n'est pas le cas puisque le message est bien affiché sur la console (sauf si ce message provient d'un autre endroit)
+	3b. parce que tu n'ajoutes pas ce qu'il faut.
+
+Pour mieux comprendre, le BON REFLEXE est de mettre un point d'arrêt sur la ligne "d.BackpackFilling();" du main de la classe Dialogue (ligne 97) pour voir ce qu'il se passe. On va utiliser l'inspecteur de variables du mode débug pour comprendre et on observe que :
+- Avant l'appel à la ligne, d.packpack.content = []
+- Après la ligne, d.backpack.content = [null, null, null]
+
+Donc si l'objet n'est pas dans le sac à la fin, ça n'est probablement pas un problème d'affichage, certainement pas un doublon de sac à dos (puisque qu'il a été modifié) mais très probablement une erreur d'ajout.
+En effet, on peut vérifier que ta méthode Backpack.toString n'affiche pas les objets null (c'est un choix, mais c'est étonnant).
+- Le "if (u == null) continue;" est particulièrement laid. Ça devrait être "if (u!=null) { ... }". L'instruction continue est une instruction à utiliser avec *beaucoup* de parcimonie...
+- Si tu as un "null", c'est qu'il y a une erreur. plutôt que de la cacher sous le tapis, tu ferais mieux de lever une exception !
+
+Bon, maintenant qu'on est certains que tu as ajouté des null au lieu des objets, il faut comprendre pourquoi.
+On revient donc à Accept et on regarde l'objet en question.
+
+En l'occurrence, on voit que l'attribut ObjetTransportable objet; n'est pas modifié dans la classe. C'est certainement de là que provient l'erreur... Sauf si c'est modifié par ailleurs.
+MAIS ÇA NE DEVRAIT JAMAIS ÊTRE LE CAS! Relis ma tout première remarque : LES ATTRIBUTS SONT PRIVÉS ! :-)
+
+Si tu mets private, tu vas bien voir que personne dans ton code n'y touche, y compris pas ta classe Accept.
+
+Alors là, me dis-tu, comment est-ce possible ?! :-D
+
+Bref, respecte les règles de base de la prog objet et tout ira mieux !
+
+
+2/ Plutôt qu'un google form, nous avons un outil au LIMSI qui s'appelle LimeSurvey.
+
+Je suis presque sûr de t'avoir dit quand tu es arrivé que nous ne devions pas mettre nos données du LIMSI chez Google ou chez qui que ce soit. Tu as signé une charge informatique dans ce sens en arrivant.
+Pour github, nous avons fait une exception (il y a le git du LIMSI mais il n'est pas accessible de l'extérieur donc pour travailler avec Chuck, c'était compliqué). Normalement, nous ne devrions pas.
+
+Mais des données de sondage psycho sur Google, là, ça ne va pas être pas possible...
+
+De plus, limesurvey te randomisera les questions tout seul comme un grand. On en parlera mercredi mais, en psycho, il faut toujours que les questions soient posées dans un ordre aléatoire pour limiter les biais.
+
+Je ne comprends pas ce que tu dis sur le fait d'avoir deux échantillons de population. On en reparle mercredi.
+
+3/ Ne te rend pas malade non plus ! :-)
+Repose-toi bien, surtout.
+
+4/ idem
+
+5/ C'est un bon début. De la javadoc aussi serait un bon début. Je pensais implicitement que tu le faisais mais non. Rappelle-moi de te parler un peu de méthode de Génie Logiciel mercredi prochain. J'oublie parfois que tu n'est qu'à bac+2
+
+

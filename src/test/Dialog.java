@@ -9,18 +9,33 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Random;
 
+/** Cette classe permet de simuler un dialogue. Elle est munie d'une liste de participants (Agent),
+ * d'une liste d'objets transportables à discuter et d'un sac à dos (Backpack)
+ */
 public class Dialog {
 	
 	public static final int NB_TOURS = 10;
 	
 	
-	Agent[] travelers;
-	ArrayList<ObjetTransportable> utilities;
-	Backpack backpack;
+	private Agent[] travelers;
+	private ArrayList<ObjetTransportable> utilities;
+	private Backpack backpack;
 	
+	/** Cette méthode permet d'ajouter un objet dans la liste des objets de la négotiation. */
 	public void addUtilities(ObjetTransportable obj) {
 		utilities.add(obj);
 	}
+	
+	/** Cette méthode permet d'ajouter un objet dans le sac à dos, une fois que les deux
+	 * participants sont d'accord pour l'y mettre.
+	 * 
+	 * Note NS: et peut-on "retirer" un objet dans la négotiation ?
+	 * Pour l'instant, je propose qu'on écarte cette possibilité mais il faut être conscient de ses implications.
+	 */
+	public void addObjectToBackPack(ObjetTransportable obj) {
+		backpack.add(obj);
+	}
+	
 	public Dialog(Agent[] t, ArrayList<ObjetTransportable> utilities, Backpack backpack) {
 		this.travelers = new Agent[2];
 		this.travelers[0] = t[0];
